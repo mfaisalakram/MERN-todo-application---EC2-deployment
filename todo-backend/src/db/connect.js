@@ -1,25 +1,14 @@
-// external modules import
 const mongoose = require("mongoose");
-
-const connectionString = process.env.MONGO_URI;
 
 const connectDatabase = async () => {
   try {
-    await mongoose
-      .connect(connectionString, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        // useCreateIndex: true, // for mongoose 6.x
-        // useFindAndModify: false, // for mongoose 6.x
-      })
-      .then(() => {
-        console.log("Connected to MongoDB database successfully.");
-      })
-      .catch((error) => {
-        console.log("Error connecting to MongoDB: ", error.message);
-      });
+    console.log("Connecting with:", process.env.MONGO_URI);
+
+    await mongoose.connect(process.env.MONGO_URI);
+
+    console.log("MongoDB Connected Successfully");
   } catch (error) {
-    console.log("Database connection error: ", error.message);
+    console.log("MongoDB Connection Error:", error.message);
   }
 };
 
